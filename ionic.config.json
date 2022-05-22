@@ -1,0 +1,7 @@
+{
+  "name": "character-creation",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
