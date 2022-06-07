@@ -8,7 +8,7 @@ import {
   IonIcon,
 } from "@ionic/react";
 import { useLocation } from "react-router";
-// import { Camera, CameraResultType } from '@capacitor/camera';
+import { Camera, CameraResultType } from '@capacitor/camera';
 import { ICharacter } from "../interfaces/character-interface";
 import { arrowForward } from "ionicons/icons";
 
@@ -16,13 +16,13 @@ const Avatar: React.FC = () => {
   const location = useLocation();
   const character = location.state as ICharacter;
 
-//   const takePicture = async () => {
-//     const image = await Camera.getPhoto({
-//       quality: 90,
-//       allowEditing: true,
-//       resultType: CameraResultType.Uri
-//     });
-// }
+  const takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+}
 
   return (
     <IonPage>
@@ -42,9 +42,9 @@ const Avatar: React.FC = () => {
         <IonButton
           expand="block"
           shape="round"
-          type="submit"
+          type="button"
           class="forward-button"
-          // onClick={takePicture}
+          onClick={takePicture}
         >
           Take Avatar Picture
           <IonIcon slot="end" icon={arrowForward} />
