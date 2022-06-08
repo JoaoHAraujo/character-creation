@@ -6,23 +6,25 @@ import {
   IonContent,
   IonButton,
   IonIcon,
+  IonGrid,
+  IonCol,
+  IonImg,
+  IonRow,
+  IonFab,
 } from "@ionic/react";
 import { useLocation } from "react-router";
-import { Camera, CameraResultType } from '@capacitor/camera';
 import { ICharacter } from "../interfaces/character-interface";
 import { arrowForward } from "ionicons/icons";
+import { usePhotoGallery } from '../hooks/usePhotoGallery';
+import { UserPhoto } from "../interfaces/avatar-photo-interface";
+import { useState } from "react";
 
 const Avatar: React.FC = () => {
   const location = useLocation();
   const character = location.state as ICharacter;
 
-  const takePicture = async () => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      resultType: CameraResultType.Uri
-    });
-}
+  const { photos, takePhoto } = usePhotoGallery();
+  
 
   return (
     <IonPage>
@@ -44,14 +46,24 @@ const Avatar: React.FC = () => {
           shape="round"
           type="button"
           class="forward-button"
-          onClick={takePicture}
+          onClick={takePhoto}
         >
           Take Avatar Picture
           <IonIcon slot="end" icon={arrowForward} />
         </IonButton>
         
-
-        <div></div>
+        <IonGrid>
+    <IonRow>
+      {photos.map((photo, index) => (
+        <IonCol size="6" key={index}>
+          <IonImg src={photo.webviewPath} />
+          <p>{photo.filepath}</p>
+        </IonCol>
+      ))}
+    </IonRow>
+  </IonGrid>
+   {/* <!-- <IonFab> markup  --></IonFab> */}
+        
       </IonContent>
     </IonPage>
   );
