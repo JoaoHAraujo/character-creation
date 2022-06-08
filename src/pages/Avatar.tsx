@@ -10,14 +10,11 @@ import {
   IonCol,
   IonImg,
   IonRow,
-  IonFab,
 } from "@ionic/react";
 import { useLocation } from "react-router";
 import { ICharacter } from "../interfaces/character-interface";
 import { arrowForward } from "ionicons/icons";
 import { usePhotoGallery } from '../hooks/usePhotoGallery';
-import { UserPhoto } from "../interfaces/avatar-photo-interface";
-import { useState } from "react";
 
 const Avatar: React.FC = () => {
   const location = useLocation();
