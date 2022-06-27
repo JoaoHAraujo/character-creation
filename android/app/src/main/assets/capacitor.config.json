@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "character-creation",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
