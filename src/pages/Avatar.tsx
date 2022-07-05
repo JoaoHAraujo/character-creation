@@ -11,14 +11,24 @@ import {
   IonImg,
   IonRow,
 } from "@ionic/react";
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { ICharacter } from "../interfaces/character-interface";
 import { arrowForward } from "ionicons/icons";
 import { usePhotoGallery } from '../hooks/usePhotoGallery';
 
 const Avatar: React.FC = () => {
   const location = useLocation();
+  const history = useHistory();
   const character = location.state as ICharacter;
+
+  function handleClick() {
+  
+  
+    history.push({
+      pathname: "/Final",
+      state: character,
+    });
+  }
 
   const { photos, takePhoto } = usePhotoGallery();
   
@@ -58,6 +68,17 @@ const Avatar: React.FC = () => {
         </IonCol>
       ))}
     </IonRow>
+
+    <IonButton
+          expand="block"
+          shape="round"
+          type="submit"
+          class="forward-button"
+          onClick={handleClick}
+        >
+          End Creation
+          <IonIcon slot="end" icon={arrowForward} />
+        </IonButton>
   </IonGrid>
    {/* <!-- <IonFab> markup  --></IonFab> */}
         
